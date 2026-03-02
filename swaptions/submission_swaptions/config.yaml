@@ -1,0 +1,41 @@
+level1:
+  L: 20
+  H: 6
+  imputer: ffill_interp
+  d_factors: 8
+  classical_kind: mlp
+  quantum:
+    mode: q_bottleneck
+    input_dim: 20
+    d_q: 8
+    d_phi: 24
+    shots: 32
+    qrc_stride: 1
+    qrc_feature_dim: 24
+    batch_size: 32
+    train_qeval_budget: 5000
+  gating:
+    enabled: true
+    source: volatility
+    quantile: 0.5
+
+level2:
+  L: 20
+  H: 6
+  imputer: svd_iterative
+  d_factors: 8
+  classical_kind: gru
+  quantum:
+    mode: qrc
+    input_dim: 20
+    d_q: 8
+    d_phi: 24
+    shots: 32
+    qrc_stride: 1
+    qrc_feature_dim: 24
+    batch_size: 32
+    train_qeval_budget: 5000
+  gating:
+    enabled: true
+    source: volatility
+    quantile: 0.5
